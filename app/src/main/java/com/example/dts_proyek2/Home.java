@@ -32,6 +32,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setSubtitle("Home");
+        toolbar.inflateMenu(R.menu.menuitem);
         txtpss = (TextView) findViewById(R.id.txtpss);
         txtUsername = (EditText) findViewById(R.id.txtUsername);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -40,7 +41,7 @@ public class Home extends AppCompatActivity {
         txtAsalSekolah = (EditText) findViewById(R.id.txtAsalSekolah);
         txtAlamat = (EditText) findViewById(R.id.txtAlamatTinggal);
         btnSimpan =  findViewById(R.id.btnSimpan);
-
+        txtUsername.setEnabled(false);
         txtAlamat.setEnabled(false);
         txtPassword.setVisibility(View.GONE);
         txtAsalSekolah.setEnabled(false);
@@ -48,6 +49,16 @@ public class Home extends AppCompatActivity {
         txtEmail.setEnabled(false);
         btnSimpan.setVisibility(View.GONE);
         bacaFileLogin();
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId()==R.id.exit){
+                    tampilkanDialogKonfirmasiLogout();
+                }
+                return false;
+            }
+        });
     }
 
     void bacaFileLogin() {
@@ -83,9 +94,9 @@ public class Home extends AppCompatActivity {
                 String line = br.readLine();
                 while (line != null) {
                     text.append(line);
-                }
-                line = br.readLine();
 
+                    line = br.readLine();
+                }
             br.close();
         } catch (IOException e) {
                 System.out.println("Error " + e.getMessage());
@@ -102,11 +113,13 @@ public class Home extends AppCompatActivity {
             Toast.makeText(this, "User Tidak Ditemukan",Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menuitem, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -116,6 +129,7 @@ public class Home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     void hapusFile() {
         File file = new File(getFilesDir(), FILENAME);
         if (file.exists()) {

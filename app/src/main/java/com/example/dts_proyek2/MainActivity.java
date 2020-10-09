@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setSubtitle("Login");
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnReg);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPass);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

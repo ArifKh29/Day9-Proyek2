@@ -13,10 +13,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public class Register extends AppCompatActivity {
-
     EditText txtUsername, txtPassword, txtNamaLengkap, txtEmail, txtAsalSekolah, txtAlamat;
     Button btnSimpan;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
